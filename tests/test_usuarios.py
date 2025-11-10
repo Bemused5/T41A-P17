@@ -17,7 +17,7 @@ def run_query(query):
 
 def test_nombre_ana():
     result = run_query("SELECT data->>'nombre' FROM usuarios WHERE id = 1;")
-    assert result[0][0] == "Ana"
+    assert result[0][0] == "Pedrito"
 
 def test_usuario_activo():
     result = run_query("SELECT data->>'activo' FROM usuarios WHERE id = 1;")

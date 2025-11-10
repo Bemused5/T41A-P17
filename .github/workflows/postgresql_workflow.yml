@@ -28,6 +28,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.X'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt      
+
     - name: Wait for PostgreSQL
       run: |
         sleep 10
@@ -46,6 +56,5 @@ jobs:
 
     - name: Run unit tests
       run: |
-        PGPASSWORD=postgres psql -h localhost -U postgres -d test_db -f 04_unit_tests.sql 2>&1 | tee test_results.log
-        set -e
+        pytest
 
